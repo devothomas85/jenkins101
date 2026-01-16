@@ -5,10 +5,9 @@ pipeline {
         }
     }
     triggers {
-        pollSCM '* * * * *'
+        pollSCM('* * * * *')
     }
     environment {
-        # Path to the Python virtual environment inside your Docker agent
         VENV_PATH = "/home/jenkins/venv"
     }
     stages {
@@ -18,9 +17,7 @@ pipeline {
                 echo "Building Python dependencies..."
                 sh '''
                 cd myapp
-                # Activate virtual environment
                 source $VENV_PATH/bin/activate
-                # Install dependencies
                 pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
@@ -32,9 +29,7 @@ pipeline {
                 echo "Running Python scripts..."
                 sh '''
                 cd myapp
-                # Activate virtual environment
                 source $VENV_PATH/bin/activate
-                # Run scripts
                 python3 hello.py
                 python3 hello.py --name=Devo
                 '''
