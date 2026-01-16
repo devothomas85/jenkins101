@@ -5,7 +5,7 @@ pipeline {
         }
     }
     triggers {
-        pollSCM('* * * * *')
+        pollSCM '* * * * *'
     }
     environment {
         # Path to the Python virtual environment inside your Docker agent
